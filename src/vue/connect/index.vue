@@ -45,7 +45,7 @@
     </section>
 
     <section class="mt-5">
-      <label class="block font-bold">Database Type</label>
+      <label class="block font-bold">Data Server Parameters</label>
       <ul class="flex-wrap tab">
         <li
           class="tab__item"
@@ -56,7 +56,11 @@
           :key="supportDatabase"
           @click="connectionOption.dbType = supportDatabase"
         >
-          {{ supportDatabase }}
+          {{
+            connectionOption.dbType == "MySQL"
+              ? "Sema4.ai Data Server"
+              : supportDatabase
+          }}
         </li>
       </ul>
     </section>
