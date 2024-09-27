@@ -6,7 +6,7 @@ The online document is migrate to https://doc.database-client.com.
 
 ---
 
-<p align="center">
+<!-- <p align="center">
 <a href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2">
     <img src="https://img.shields.io/vscode-marketplace/v/cweijan.vscode-mysql-client2.svg?label=vscode%20marketplace">
   </a>
@@ -23,7 +23,7 @@ The online document is migrate to https://doc.database-client.com.
   <img alt="GitHub" src="https://img.shields.io/github/license/cweijan/vscode-database-client">
   </a>
 </p>
-<br>
+<br> -->
 
 This project is a database client for VSCode, supports manager **MySQL/MariaDB, PostgreSQL, SQLite, Redis, ClickHouse, 达梦**, and **ElasticSearch**, and works as an **SSH** client, boost your maximum productivity!
 
