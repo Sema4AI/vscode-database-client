@@ -1,35 +1,10 @@
-#### This repository is the early source code of Database Client, the new version is closed source.
-
-# Database Client for Visual Studio Code
-
-The online document is migrate to https://doc.database-client.com.
+# Sema4 AI Database Client for Visual Studio Code
 
 ---
 
-<p align="center">
-<a href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2">
-    <img src="https://img.shields.io/vscode-marketplace/v/cweijan.vscode-mysql-client2.svg?label=vscode%20marketplace">
-  </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2">
-    <img src="https://vsmarketplacebadge.apphb.com/installs-short/cweijan.vscode-mysql-client2.svg">
-  </a>
-  <a href="https://github.com/cweijan/vscode-database-client">
-    <img src="https://img.shields.io/github/stars/cweijan/vscode-database-client?logo=github&style=flat">
-  </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2">
-    <img src="https://img.shields.io/vscode-marketplace/r/cweijan.vscode-mysql-client2.svg">
-  </a>
-  <a href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2">
-  <img alt="GitHub" src="https://img.shields.io/github/license/cweijan/vscode-database-client">
-  </a>
-</p>
-<br>
+This project is a database client for VSCode to connect to Sema4 AI data server to browse the data sources and execute SQL queries
 
-This project is a database client for VSCode, supports manager **MySQL/MariaDB, PostgreSQL, SQLite, Redis, ClickHouse, 达梦**, and **ElasticSearch**, and works as an **SSH** client, boost your maximum productivity!
-
-> Project site: [vscode-database-client](https://github.com/cweijan/vscode-database-client), [中文文档](README_CN.md)
-
-[![Logo](./public/logo_dark.png)](https://database-client.com)
+> Project site: [vscode-database-client](https://github.com/Sema4AI/vscode-database-client)
 
 ## Features
 
@@ -37,15 +12,22 @@ This project is a database client for VSCode, supports manager **MySQL/MariaDB, 
   - [Connect](#connect)
   - [Table](#table)
   - [Execute SQL Query](#execute-sql-query)
-  - [Backup/Import](#backupimport)
-  - [Setting](#setting)
-  - [Filter](#filter)
-  - [Generate Mock Data](#generate-mock-data)
   - [History](#history)
 
-## Installation
+## Run the extension locally
 
-Install from vscode marketplace [vscode-database-client](https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-mysql-client2).
+1. Uninstall previously installed version of the extension.
+2. Run the following command
+   ```
+   npm install
+   ```
+3. Open the source code in VS Code
+4. Open the file [src/extension.ts](src/extension.ts)
+5. Go to Run And Debug panel in VS Code and click Debug (Or just hit F5).
+   ![image](images/run-debug.png)
+6. It will open a new VS Code window with the extension enabled.
+
+   ![image](images/extension-enabled.png)
 
 ## Run the extension locally
 
@@ -100,43 +82,11 @@ Note: The extension is developed using Nodejs. Nodejs does not allow duplicate n
 
 ![run](images/run.jpg)
 
-This extension supports codelen, but does not support stored procedures and functions. If you use them frequently, it is recommended to disable codelen
-![image](https://user-images.githubusercontent.com/27798227/144196926-e581872e-5392-4744-a646-a644749c548c.png)
-
 ## Cache
 
 In order to improve performance, the database information is cached. If your database structure changes externally, you need to click the refresh button to refresh the cache。
 
 ![](images/1638342622208.png)
-
-## Backup/Import
-
-Move to ant DatabaseNode or TableNode. The export/import options are listed in the context menu (right click to open).
-
-The extension implements the backup function, but it is not stable enough. You can add mysql_dump or pg_dump to the environment variable, and the extension will use these tools for backup.
-
-![bakcup](images/Backup.jpg)
-
-## Setting
-
-This extension contain some setting, can be modified as follows.
-
-The default settings can get the best experience, don't worry
-
-![image](https://user-images.githubusercontent.com/27798227/146523121-9de9c708-8a8e-4e3b-ae1d-9da36f3217e1.png)
-![](images/1611910592756.png)
-
-## Filter
-
-Used to quickly filter the table, if there is an input box to simplify the search operation, but unfortunately VSCode does not support this function.
-
-![filter](images/filter.gif)
-
-## Generate Mock Data
-
-You can easily generate test data.
-
-![mockData](images/mockData.jpg)
 
 ## History
 
