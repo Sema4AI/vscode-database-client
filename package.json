@@ -1,9 +1,9 @@
 {
-  "name": "vscode-mysql-client2",
-  "displayName": "MySQL",
-  "description": "Database Client for vscode",
-  "version": "3.9.8",
-  "publisher": "cweijan",
+  "name": "vscode-sema4ai-client",
+  "displayName": "Sema4 AI Database Client",
+  "description": "Sema4 AI Database Client",
+  "version": "1.0.0",
+  "publisher": "mmoiyadi",
   "icon": "resources/logo.png",
   "engines": {
     "vscode": "^1.51.0"
@@ -1013,7 +1013,7 @@
     "dev": "webpack --progress",
     "build": "webpack --progress --mode=production",
     "lib": "webpack --config webpack.config.lib.js --progress -p",
-    "publich": "vsce publish",
+    "publish": "vsce publish",
     "vscode:prepublish": "npm run build"
   },
   "devDependencies": {
