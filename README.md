@@ -29,25 +29,6 @@ This project is a database client for VSCode to connect to Sema4 AI data server 
 
    ![image](images/extension-enabled.png)
 
-## Run the extension locally
-
-1. Uninstall previously installed version of the extension.
-2. Run the following command
-   ```
-   npm install
-   ```
-3. Open the source code in VS Code
-4. Open the file [src/extension.ts](src/extension.ts)
-5. Go to Run And Debug panel in VS Code and click Debug (Or just hit F5).
-   
-   ![image](https://github.com/user-attachments/assets/2b3c7e7c-319d-4a51-b8bd-bc476ef88e46)
-
-7. It will open a new VS Code window with the extension enabled.
-
-   ![image](https://github.com/user-attachments/assets/d8248868-aca1-47d2-b60a-a8e04a9a3329)
-
-
-
 ## Connect
 
 1. Open Database Explorer panel, then click the `+` button.
