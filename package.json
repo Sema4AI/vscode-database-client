@@ -1,9 +1,9 @@
 {
   "name": "vscode-sema4ai-client",
-  "displayName": "Sema4 AI Database Client",
-  "description": "Sema4 AI Database Client",
-  "version": "1.0.0",
-  "publisher": "mmoiyadi",
+  "displayName": "Sema4.ai Database Client",
+  "description": "Sema4.ai Database Client",
+  "version": "1.0.1",
+  "publisher": "Sema4ai",
   "icon": "resources/logo.png",
   "engines": {
     "vscode": "^1.51.0"
