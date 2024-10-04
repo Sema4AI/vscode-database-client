@@ -86,125 +86,104 @@ export class QueryUnit {
       return;
     }
 
+    QueryPage.send({
+      connection: connectionNode,
+      type: MessageType.RUN,
+      queryOption,
+      res: { sql } as RunResponse,
+    });
+
+    const executeTime = new Date().getTime();
     try {
-      const queries = sql
-        .split(";")
-        .map((query) => query.trim())
-        .filter((query) => query.length > 0);
-
-      for (const query of queries) {
-        QueryPage.send({
-          connection: connectionNode,
-          type: MessageType.RUN,
-          queryOption,
-          res: { sql } as RunResponse,
-        });
-
-        const executeTime = new Date().getTime();
-        const connection = await ConnectionManager.getConnection(
-          connectionNode
-        );
-        connection.query(query, (err: Error, data, fields, total) => {
-          if (err) {
-            QueryPage.send({
-              connection: connectionNode,
-              type: MessageType.ERROR,
-              queryOption,
-              res: { sql: query, message: err.message } as ErrorResponse,
-            });
-            return;
-          }
-          const costTime = new Date().getTime() - executeTime;
-          if (queryOption.recordHistory) {
-            vscode.commands.executeCommand(
-              CodeCommand.RecordHistory,
-              query,
-              costTime
-            );
-          }
-
-          if (
-            query.match(/(create|drop|alter)\s+(table|prcedure|FUNCTION|VIEW)/i)
-          ) {
-            vscode.commands.executeCommand(CodeCommand.Refresh);
-          }
-
-          if (data.affectedRows) {
-            QueryPage.send({
-              connection: connectionNode,
-              type: MessageType.DML,
-              queryOption,
-              res: {
-                sql: query,
-                costTime,
-                affectedRows: data.affectedRows,
-              } as DMLResponse,
-            });
-            return;
-          }
-
-          // query result
-          if (Array.isArray(fields)) {
-            const isQuery = fields[0] != null && fields[0].name != undefined;
-            const isSqliteEmptyQuery =
-              fields.length == 0 && query.match(/\bselect\b/i);
-            const isMongoEmptyQuery =
-              fields.length == 0 && query.match(/\.collection\b/i);
-            if (isQuery || isSqliteEmptyQuery || isMongoEmptyQuery) {
-              QueryPage.send({
-                connection: connectionNode,
-                type: MessageType.DATA,
-                queryOption,
-                res: {
-                  sql: query,
-                  costTime,
-                  data,
-                  fields,
-                  total,
-                } as DataResponse,
-              });
-              return;
-            }
-          }
-
-          if (Array.isArray(data)) {
-            // mysql procedrue call result
-            const lastEle = data[data.length - 1];
-            if (
-              data.length > 2 &&
-              Util.is(lastEle, "ResultSetHeader") &&
-              Util.is(data[0], "TextRow")
-            ) {
-              data = data[data.length - 2];
-              fields = fields[fields.length - 2] as any as FieldInfo[];
-              QueryPage.send({
-                connection: connectionNode,
-                type: MessageType.DATA,
-                queryOption,
-                res: {
-                  sql: query,
-                  costTime,
-                  data,
-                  fields,
-                  total,
-                } as DataResponse,
-              });
-              return;
-            }
-          }
-
+      const connection = await ConnectionManager.getConnection(connectionNode);
+      connection.query(sql, (err: Error, data, fields, total) => {
+        if (err) {
           QueryPage.send({
             connection: connectionNode,
-            type: MessageType.MESSAGE_BLOCK,
+            type: MessageType.ERROR,
+            queryOption,
+            res: { sql, message: err.message } as ErrorResponse,
+          });
+          return;
+        }
+        const costTime = new Date().getTime() - executeTime;
+        if (queryOption.recordHistory) {
+          vscode.commands.executeCommand(
+            CodeCommand.RecordHistory,
+            sql,
+            costTime
+          );
+        }
+
+        if (
+          sql.match(/(create|drop|alter)\s+(table|prcedure|FUNCTION|VIEW)/i)
+        ) {
+          vscode.commands.executeCommand(CodeCommand.Refresh);
+        }
+
+        if (data.affectedRows) {
+          QueryPage.send({
+            connection: connectionNode,
+            type: MessageType.DML,
             queryOption,
             res: {
-              sql: query,
+              sql,
               costTime,
-              isInsert: query.match(/\binsert\b/i) != null,
+              affectedRows: data.affectedRows,
             } as DMLResponse,
           });
+          return;
+        }
+
+        // query result
+        if (Array.isArray(fields)) {
+          const isQuery = fields[0] != null && fields[0].name != undefined;
+          const isSqliteEmptyQuery =
+            fields.length == 0 && sql.match(/\bselect\b/i);
+          const isMongoEmptyQuery =
+            fields.length == 0 && sql.match(/\.collection\b/i);
+          if (isQuery || isSqliteEmptyQuery || isMongoEmptyQuery) {
+            QueryPage.send({
+              connection: connectionNode,
+              type: MessageType.DATA,
+              queryOption,
+              res: { sql, costTime, data, fields, total } as DataResponse,
+            });
+            return;
+          }
+        }
+
+        if (Array.isArray(data)) {
+          // mysql procedrue call result
+          const lastEle = data[data.length - 1];
+          if (
+            data.length > 2 &&
+            Util.is(lastEle, "ResultSetHeader") &&
+            Util.is(data[0], "TextRow")
+          ) {
+            data = data[data.length - 2];
+            fields = fields[fields.length - 2] as any as FieldInfo[];
+            QueryPage.send({
+              connection: connectionNode,
+              type: MessageType.DATA,
+              queryOption,
+              res: { sql, costTime, data, fields, total } as DataResponse,
+            });
+            return;
+          }
+        }
+
+        QueryPage.send({
+          connection: connectionNode,
+          type: MessageType.MESSAGE_BLOCK,
+          queryOption,
+          res: {
+            sql,
+            costTime,
+            isInsert: sql.match(/\binsert\b/i) != null,
+          } as DMLResponse,
         });
-      }
+      });
     } catch (error) {
       console.log(error);
     }
