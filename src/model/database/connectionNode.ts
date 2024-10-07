@@ -127,6 +127,7 @@ export class ConnectionNode extends Node implements CopyAble {
         if (dbNameList.length > 1) {
             dbName = await vscode.window.showQuickPick(dbNameList, { placeHolder: "active database" })
         }
+        this.contextValue = ModelType.SCHEMA;
         ConnectionManager.changeActive(dbName ? childMap[`${this.getConnectId()}@${dbName}`] : this)
 
     }

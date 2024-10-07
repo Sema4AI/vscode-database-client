@@ -110,7 +110,8 @@ export class SchemaNode extends Node implements CopyAble {
 
     public async newQuery() {
 
-        QueryUnit.showSQLTextDocument(this,'',`${this.schema}.sql`,FileModel.APPEND)
+        QueryUnit.showSQLTextDocument(this,'',`${this.schema}.sql`,FileModel.APPEND);
+        ConnectionManager.changeActive(this);
 
     }
 

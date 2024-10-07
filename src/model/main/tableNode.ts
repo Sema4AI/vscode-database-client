@@ -212,6 +212,7 @@ ROW_FORMAT : ${meta.row_format}
     public async selectSqlTemplate() {
         const sql = `SELECT * FROM ${Util.wrap(this.table)}`;
         QueryUnit.showSQLTextDocument(this, sql, Template.table);
+        ConnectionManager.changeActive(this);
 
     }
 
