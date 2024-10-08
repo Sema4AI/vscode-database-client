@@ -983,7 +983,7 @@
         },
         "database-client.showView": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show view on tree view."
         },
         "database-client.showQuery": {
@@ -993,12 +993,12 @@
         },
         "database-client.showProcedure": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show procedure on tree view."
         },
         "database-client.showFunction": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "description": "Show function on tree view."
         },
         "database-client.showTrigger": {
