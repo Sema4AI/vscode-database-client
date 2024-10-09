@@ -31,6 +31,13 @@ jobs:
         run: |
           echo "Base version: $(node -p "require('./package.json').version")"
           echo "BASE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+          
+      - name: Cache build number
+        uses: actions/cache@v3
+        id: build-number-cache
+        with:
+          path: buildNumber.txt
+          key: build-number-cache
 
       - name: Increment build number
         id: increment-build
