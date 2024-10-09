@@ -88,11 +88,22 @@ export class ConnectionNode extends Node implements CopyAble {
             .then((databases) => {
                 const includeDatabaseArray = this.includeDatabases?.toLowerCase()?.split(",")
                 const usingInclude = this.includeDatabases && includeDatabaseArray && includeDatabaseArray.length >= 1;
+                const excludedDatasources = (Global.getConfig(ConfigKey.EXCLUDED_DATASOURCES, "") as string).toLowerCase()?.
+                split(",").map((excludedDatasource) => excludedDatasource.trim());
+
                 const databaseNodes = databases.filter((db) => {
+                  
+                  const excludedBySystem = excludedDatasources && excludedDatasources.indexOf(db.Database.toLocaleLowerCase()) != -1;
+                  if(excludedBySystem){
+                    return false;
+                  }
+                  else{
                     if (usingInclude && !db.schema) {
-                        return includeDatabaseArray.indexOf(db.Database.toLocaleLowerCase()) != -1;
+                      return includeDatabaseArray.indexOf(db.Database.toLocaleLowerCase()) != -1;
                     }
-                    return true;
+                  return true;
+                  }
+                    
                 }).map<SchemaNode | CatalogNode>((database) => {
                     return hasCatalog ?
                         new CatalogNode(database.Database, this)
@@ -102,6 +113,7 @@ export class ConnectionNode extends Node implements CopyAble {
                 if (Global.getConfig("showUser") && !hasCatalog) {
                     databaseNodes.unshift(new UserGroup("USER", this));
                 }
+                
                 DatabaseCache.setSchemaListOfConnection(this.uid, databaseNodes);
 
                 return databaseNodes;

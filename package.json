@@ -106,12 +106,6 @@
     },
     "commands": [
       {
-        "command": "mysql.struct.diff",
-        "title": "%command.struct.diff%",
-        "category": "MySQL",
-        "icon": "$(sync)"
-      },
-      {
         "command": "mysql.history.open",
         "title": "%command.history.open%",
         "category": "MySQL",
@@ -544,11 +538,6 @@
           "group": "navigation@0"
         },
         {
-          "command": "mysql.struct.diff",
-          "when": "view == github.cweijan.mysql",
-          "group": "navigation@-2"
-        },
-        {
           "command": "mysql.connection.config",
           "when": "view =~ /cweijan.+?ql/",
           "group": "navigation@-3"
@@ -970,6 +959,11 @@
           "type": "boolean",
           "default": true,
           "description": "%config.preferConnectionName%"
+        },
+        "database-client.excludedDatasources": {
+          "type": "string",
+          "default": "mindsdb, log",
+          "description": "Excluded Datasources"
         },
         "database-client.disableSqlCodeLen": {
           "type": "boolean",
