@@ -11,7 +11,7 @@ export class TableGroup extends Node {
     public iconPath=new ThemeIcon("list-flat")
     public contextValue: string = ModelType.TABLE_GROUP;
     constructor(readonly parent: Node) {
-        super("Table")
+        super("Tables")
         this.init(parent)
         if(Util.supportColorIcon){
             this.iconPath=new ThemeIcon("list-flat",new ThemeColor("terminal.ansiBlue"))
