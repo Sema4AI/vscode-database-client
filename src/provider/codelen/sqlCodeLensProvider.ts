@@ -19,9 +19,24 @@ export class SqlCodeLensProvider implements vscode.CodeLensProvider {
             return []
         }
 
-        return SQLParser.parseBlocks(document).map(block =>
-            new vscode.CodeLens(block.range, { command: "mysql.codeLens.run", title: "▶ Run SQL", arguments: [block.sql], })
-        )
+        return SQLParser.parseBlocks(document).flatMap(block => {
+          // Create a CodeLens for the "Run SQL" command
+          const runCommand = new vscode.CodeLens(block.range, {
+              command: "mysql.codeLens.run",
+              title: "▶ Run SQL",
+              arguments: [block.sql],
+          });
+  
+          // Create a CodeLens for the "Create Named Query" command
+          const createNamedQueryCommand = new vscode.CodeLens(block.range, {
+              command: "mysql.codeLens.namedQuery",
+              title: "✚ Create Named Query ",
+              arguments: [block.sql],
+          });
+  
+          // Return both CodeLens objects for the same block
+          return [runCommand, createNamedQueryCommand];
+      });
     }
 
 }

@@ -31,7 +31,7 @@
           v-model="connectionOption.name"
         />
       </div>
-      <div class="inline-block mb-2 mr-10">
+      <div style="display:none" class="inline-block mb-2 mr-10">
         <label class="inline-block mr-5 font-bold">Connection Target</label>
         <div class="inline-flex items-center">
           <el-radio v-model="connectionOption.global" :label="true">
@@ -45,7 +45,7 @@
     </section>
 
     <section class="mt-5">
-      <label class="block font-bold">Data Server Parameters</label>
+      <label style="display: none; "class="block font-bold">Data Server Parameters</label>
       <ul class="flex-wrap tab">
         <li
           class="tab__item"
@@ -58,7 +58,7 @@
         >
           {{
             connectionOption.dbType == "MySQL"
-              ? "Sema4.ai Data Server"
+              ? "Connection Parameters"
               : supportDatabase
           }}
         </li>
@@ -144,12 +144,14 @@
       </section>
 
       <section
+        style="display: none;"
         v-if="
           connectionOption.dbType != 'FTP' &&
           connectionOption.dbType != 'MongoDB'
         "
       >
-        <div class="inline-block mb-2 mr-10">
+        <div 
+          class="inline-block mb-2 mr-10">
           <label class="inline-block w-32 mr-5 font-bold">Databases</label>
           <input
             class="w-64 field__input"
@@ -157,7 +159,7 @@
             v-model="connectionOption.database"
           />
         </div>
-        <div
+        <div 
           class="inline-block mb-2 mr-10"
           v-if="connectionOption.dbType != 'Redis'"
         >
@@ -177,7 +179,7 @@
         :connectionOption="connectionOption"
       />
 
-      <section>
+      <section style="display: none;">
         <div class="inline-block mb-2 mr-10">
           <label class="inline-block w-32 mr-5 font-bold"
             >Connection Timeout</label
@@ -202,6 +204,7 @@
       </section>
 
       <section
+        style="display: none;"
         class="flex items-center mb-2"
         v-if="connectionOption.dbType == 'MySQL'"
       >
@@ -216,7 +219,8 @@
       </section>
     </template>
 
-    <section class="flex items-center">
+    <section class="flex items-center"
+      style="display: none;">
       <div
         class="inline-block mb-2 mr-10"
         v-if="
@@ -316,6 +320,7 @@ export default {
   data() {
     return {
       connectionOption: {
+        name: "Sema4 AI Data Server",
         host: "127.0.0.1",
         dbPath: "",
         port: "47335",

@@ -271,6 +271,9 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.table.design": (tableNode: TableNode) => {
                     tableNode.designTable();
                 },
+                "mysql.codeLens.namedQuery": (sql: string) => {
+                    vscode.window.showErrorMessage('This command is not yet implemented.');
+                }
             },
             // show source
             ...{
