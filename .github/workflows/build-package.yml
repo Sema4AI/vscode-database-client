@@ -37,7 +37,9 @@ jobs:
         id: build-number-cache
         with:
           path: buildNumber.txt
-          key: build-number-cache
+          key: build-number-cache-${{ github.run_id }}
+          restore-keys: |
+            build-number-cache-
 
       - name: Increment build number
         id: increment-build
@@ -71,4 +73,5 @@ jobs:
         run: |
           S3_BASE_URL="s3://downloads.robocorp.com/sema4-data-explorer/alpha"
           aws s3 cp vscode-sema4ai-client-${{ env.BASE_VERSION }}-build.${{ env.BUILD_NUMBER }}.vsix "$S3_BASE_URL/vscode-sema4ai-client-${{ env.BASE_VERSION }}-build.${{ env.BUILD_NUMBER }}.vsix"
+          aws s3 cp vscode-sema4ai-client-${{ env.BASE_VERSION }}-build.${{ env.BUILD_NUMBER }}.vsix "$S3_BASE_URL/vscode-sema4ai-client.vsix"
           aws s3 cp buildNumber.txt "$S3_BASE_URL/"
