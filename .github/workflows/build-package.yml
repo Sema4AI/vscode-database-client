@@ -37,7 +37,9 @@ jobs:
         id: build-number-cache
         with:
           path: buildNumber.txt
-          key: build-number-cache
+          key: build-number-cache-${{ github.run_id }}
+          restore-keys: |
+            build-number-cache-
 
       - name: Increment build number
         id: increment-build
