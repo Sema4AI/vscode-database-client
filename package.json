@@ -957,7 +957,7 @@
     "lodash": "^4.17.20",
     "lodash.defaults": "^4.1.0",
     "mongodb": "^3.6.9",
-    "mysql2": "^2.2.5",
+    "mysql2": "^3.11.3",
     "officegen": "^0.6.5",
     "pg": "^8.5.1",
     "portfinder": "^1.0.26",
