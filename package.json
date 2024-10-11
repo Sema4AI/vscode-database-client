@@ -174,16 +174,6 @@
         "category": "MySQL"
       },
       {
-        "command": "mysql.connection.disable",
-        "title": "%command.connection.disable%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.server.info",
-        "title": "%command.server.info%",
-        "category": "MySQL"
-      },
-      {
         "command": "mysql.connection.delete",
         "title": "%command.connection.delete%",
         "category": "MySQL",
@@ -217,11 +207,6 @@
         "title": "%command.query.switch%",
         "category": "MySQL",
         "icon": "$(symbol-file)"
-      },
-      {
-        "command": "mysql.data.import",
-        "title": "%command.data.import%",
-        "category": "MySQL"
       },
       {
         "command": "mysql.db.active",
@@ -535,11 +520,6 @@
           "group": "1_mysql@2"
         },
         {
-          "command": "mysql.connection.disable",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection|ftpConnection)$/",
-          "group": "1_mysql@4"
-        },
-        {
           "command": "mysql.host.copy",
           "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection)$/",
           "group": "1_mysql@6"
@@ -568,16 +548,6 @@
           "command": "mysql.refresh",
           "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(esConnection|ftpConnection|ftpFolder)$/",
           "group": "2_mysql@1"
-        },
-        {
-          "command": "mysql.server.info",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == connection",
-          "group": "4_mysql@1"
-        },
-        {
-          "command": "mysql.data.import",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == connection",
-          "group": "8_mysql@1"
         },
         {
           "command": "mysql.connection.delete",
@@ -653,11 +623,6 @@
           "command": "mysql.db.drop",
           "when": "view =~ /cweijan.+?ql/ && viewItem =~ /(database|catalog)/",
           "group": "4_mysql@5"
-        },
-        {
-          "command": "mysql.data.import",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == database",
-          "group": "mysql@8"
         },
         {
           "command": "mysql.table.show",
