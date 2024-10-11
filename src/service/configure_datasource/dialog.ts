@@ -16,6 +16,14 @@ type ConnectionParametersTyped = {
 
 function generate_query(s: State): string {
 	const connectionParametersTyped: ConnectionParametersTyped = {};
+    // check if all required parameters are present
+    for (const parameter of s.connectionParametersSpec) {
+        if (!parameter.optional) {
+            if (!s.connectionParameters[parameter.name]) {
+                return '';
+            }
+        }
+    }
 	for (const [param, value] of Object.entries(s.connectionParameters)) {
 		let valueTyped: ConfigurationParameterType;
 		const c = s.connectionParametersSpec.find((ps) => ps.name === param)!;
