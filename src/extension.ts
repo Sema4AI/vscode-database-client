@@ -109,15 +109,6 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.struct.diff": () => {
                     new DiffService().startDiff(serviceManager.provider);
                 },
-                "mysql.data.export": (node: SchemaNode | TableNode) => {
-                    ServiceManager.getDumpService(node.dbType).dump(node, true)
-                },
-                "mysql.struct.export": (node: SchemaNode | TableNode) => {
-                    ServiceManager.getDumpService(node.dbType).dump(node, false)
-                },
-                "mysql.document.generate": (node: SchemaNode | TableNode) => {
-                    ServiceManager.getDumpService(node.dbType).generateDocument(node)
-                },
                 "mysql.data.import": (node: SchemaNode | ConnectionNode) => {
                     const importService=ServiceManager.getImportService(node.dbType);
                     vscode.window.showOpenDialog({ filters: importService.filter(), canSelectMany: false, openLabel: "Select sql file to import", canSelectFiles: true, canSelectFolders: false }).then((filePath) => {
@@ -145,9 +136,6 @@ export function activate(context: vscode.ExtensionContext) {
             ...{
                 "mysql.db.active": () => {
                     serviceManager.provider.activeDb();
-                },
-                "mysql.db.truncate": (databaseNode: SchemaNode) => {
-                    databaseNode.truncateDb();
                 },
                 "mysql.database.add": (connectionNode: ConnectionNode) => {
                     connectionNode.createDatabase();
@@ -225,9 +213,6 @@ export function activate(context: vscode.ExtensionContext) {
             ...{
                 "mysql.show.esIndex": (indexNode: ESIndexNode) => {
                     indexNode.viewData()
-                },
-                "mysql.table.truncate": (tableNode: TableNode) => {
-                    tableNode.truncateTable();
                 },
                 "mysql.table.drop": (tableNode: TableNode) => {
                     tableNode.dropTable();

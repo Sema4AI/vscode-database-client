@@ -224,33 +224,8 @@
         "category": "MySQL"
       },
       {
-        "command": "mysql.data.export",
-        "title": "%command.data.export%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.struct.export",
-        "title": "%command.struct.export%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.document.generate",
-        "title": "%command.document.generate%",
-        "category": "MySQL"
-      },
-      {
         "command": "mysql.db.active",
         "title": "%command.db.active%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.table.truncate",
-        "title": "%command.table.truncate%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.db.truncate",
-        "title": "%command.db.truncate%",
         "category": "MySQL"
       },
       {
@@ -675,29 +650,9 @@
           "group": "3_mysql@0"
         },
         {
-          "command": "mysql.db.truncate",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == database",
-          "group": "4_mysql@4"
-        },
-        {
           "command": "mysql.db.drop",
           "when": "view =~ /cweijan.+?ql/ && viewItem =~ /(database|catalog)/",
           "group": "4_mysql@5"
-        },
-        {
-          "command": "mysql.data.export",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == database",
-          "group": "mysql@5"
-        },
-        {
-          "command": "mysql.struct.export",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == database",
-          "group": "mysql@6"
-        },
-        {
-          "command": "mysql.document.generate",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == database",
-          "group": "mysql@7"
         },
         {
           "command": "mysql.data.import",
@@ -743,21 +698,6 @@
           "command": "mysql.mock.table",
           "when": "view =~ /cweijan.+?ql/ && viewItem == table",
           "group": "1_inline1@1"
-        },
-        {
-          "command": "mysql.data.export",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(table|view)$/",
-          "group": "1_inline1@2"
-        },
-        {
-          "command": "mysql.struct.export",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(table|view)$/",
-          "group": "1_inline1@3"
-        },
-        {
-          "command": "mysql.table.truncate",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == table",
-          "group": "2_mysql@1"
         },
         {
           "command": "mysql.table.drop",
