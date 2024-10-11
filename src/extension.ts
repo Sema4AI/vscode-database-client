@@ -137,8 +137,8 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.db.active": () => {
                     serviceManager.provider.activeDb();
                 },
-                "mysql.database.add": (connectionNode: ConnectionNode) => {
-                    connectionNode.createDatabase();
+                "mysql.database.add": async(connectionNode: ConnectionNode) => {
+                    await connectionNode.createDatabase();
                 },
                 "mysql.db.drop": (databaseNode: SchemaNode) => {
                     databaseNode.dropDatatabase();
