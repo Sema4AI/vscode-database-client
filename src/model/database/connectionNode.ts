@@ -15,6 +15,7 @@ import { ViewGroup } from "../main/viewGroup";
 import { CatalogNode } from "./catalogNode";
 import { SchemaNode } from "./schemaNode";
 import { UserGroup } from "./userGroup";
+import { configureDataSource } from "../../service/configure_datasource/dialog";
 
 /**
  * TODO: 切换为使用连接池, 现在会导致消费队列不正确, 导致视图失去响应
@@ -144,15 +145,16 @@ export class ConnectionNode extends Node implements CopyAble {
 
     }
 
-    public createDatabase() {
-        vscode.window.showInputBox({ placeHolder: 'Input you want to create new database name.' }).then(async (inputContent) => {
-            if (!inputContent) { return; }
-            this.execute(this.dialect.createDatabase(inputContent)).then(() => {
-                DatabaseCache.clearDatabaseCache(this.uid);
-                DbTreeDataProvider.refresh(this);
-                vscode.window.showInformationMessage(`create database ${inputContent} success!`);
-            });
-        });
+    public async createDatabase() {
+      const query = await configureDataSource();
+      if (!query ){
+        return;
+      }
+      this.execute(query).then(() => {
+        DatabaseCache.clearDatabaseCache(this.uid);
+        DbTreeDataProvider.refresh(this);
+        vscode.window.showInformationMessage(`Create datasource success!`);
+      });  
     }
 
     public async deleteConnection(context: vscode.ExtensionContext) {

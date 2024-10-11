@@ -48,7 +48,7 @@ async function isBoolean(input: string): Promise<string | undefined> {
 	return undefined;
 }
 
-export async function configureDataSource(context: vscode.ExtensionContext) {
+export async function configureDataSource() {
 	const state = await collectInputs();
 	if (state) {
 		return generate_query(state);

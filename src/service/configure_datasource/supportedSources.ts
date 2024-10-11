@@ -26,6 +26,9 @@ const SupportedDataSourcesConfigurationParametersSpec: DataSourcesConfigurationP
       name: "host",
     },
     {
+      name: "database",
+    },
+    {
       name: "port",
       kind: "integer",
     },
