@@ -76,7 +76,6 @@ export class ServiceManager {
 
         this.initMysqlService();
         res.push(this.initTreeView())
-        res.push(this.initTreeProvider())
         // res.push(vscode.window.createTreeView("github.cweijan.history",{treeDataProvider:new HistoryProvider(this.context)}))
         ServiceManager.instance = this;
         this.isInit = true
