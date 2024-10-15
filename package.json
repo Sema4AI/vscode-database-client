@@ -168,12 +168,6 @@
         "category": "MySQL"
       },
       {
-        "command": "mysql.connection.config",
-        "title": "%command.connection.config%",
-        "icon": "$(gear)",
-        "category": "MySQL"
-      },
-      {
         "command": "mysql.connection.delete",
         "title": "%command.connection.delete%",
         "category": "MySQL",
@@ -281,12 +275,6 @@
         "command": "mysql.column.drop",
         "title": "%command.column.drop%",
         "category": "MySQL"
-      },
-      {
-        "command": "mysql.template.sql",
-        "title": "%command.template.sql%",
-        "category": "MySQL",
-        "icon": "$(symbol-file)"
       },
       {
         "command": "mysql.template.table",
@@ -498,11 +486,6 @@
           "group": "navigation@0"
         },
         {
-          "command": "mysql.connection.config",
-          "when": "view =~ /cweijan.+?ql/",
-          "group": "navigation@-3"
-        },
-        {
           "command": "mysql.util.github",
           "when": "view == github.cweijan.nosql",
           "group": "navigation@-3"
@@ -638,11 +621,6 @@
           "command": "mysql.table.design",
           "when": "view =~ /cweijan.+?ql/ && viewItem == table",
           "group": "1_inline@0"
-        },
-        {
-          "command": "mysql.template.sql",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == table",
-          "group": "inline@5"
         },
         {
           "command": "mysql.table.source",

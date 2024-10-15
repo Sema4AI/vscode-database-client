@@ -85,9 +85,6 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.connection.edit": (connectionNode: ConnectionNode) => {
                     serviceManager.connectService.openConnect(connectionNode.provider, connectionNode)
                 },
-                "mysql.connection.config": () => {
-                    serviceManager.connectService.openConfig()
-                },
                 "mysql.connection.open": (connectionNode: ConnectionNode) => {
                     connectionNode.provider.openConnection(connectionNode)
                 },
@@ -274,9 +271,6 @@ export function activate(context: vscode.ExtensionContext) {
             },
             // create template
             ...{
-                "mysql.template.sql": (tableNode: TableNode) => {
-                    tableNode.selectSqlTemplate();
-                },
                 "mysql.template.table": (tableGroup: TableGroup) => {
                     tableGroup.createTemplate();
                 },
