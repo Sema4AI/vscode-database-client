@@ -13,20 +13,19 @@
     "Keymaps"
   ],
   "keywords": [
-    "SQL",
-    "MySQL",
     "Database",
     "Postgresql",
-    "Redis"
+    "Redshift",
+    "Snowflake"
   ],
   "bugs": {
-    "url": "https://github.com/cweijan/vscode-database-client/issues",
-    "email": "cweijan@163.com"
+    "url": "https://github.com/Sema4AI/vscode-database-client/issues",
+    "email": "support@sema4.ai"
   },
-  "homepage": "https://github.com/cweijan/vscode-database-client/blob/master/README.md",
+  "homepage": "https://github.com/Sema4AI/vscode-database-client/blob/master/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cweijan/vscode-database-client.git"
+    "url": "https://github.com/Sema4AI/vscode-database-client.git"
   },
   "activationEvents": [
     "*"
@@ -98,92 +97,63 @@
       {
         "command": "mysql.history.open",
         "title": "%command.history.open%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(history)"
-      },
-      {
-        "command": "mysql.setting.open",
-        "title": "%command.setting.open%",
-        "category": "MySQL",
-        "icon": "resources/icon/settings.svg"
       },
       {
         "command": "mysql.refresh",
         "title": "%command.refresh%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(refresh)"
       },
       {
         "command": "mysql.host.copy",
         "title": "%command.host.copy%",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.name.copy",
         "title": "%command.name.copy%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.query.add",
-        "title": "%command.query.add%",
-        "icon": "$(add)",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.query.rename",
-        "title": "%command.query.rename%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.query.run",
-        "title": "%command.query.run%",
-        "icon": "$(run)",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.connection.add",
         "title": "%command.connection.add%",
         "icon": "$(add)",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.util.github",
-        "title": "%command.util.github%",
-        "icon": "$(github)",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.connection.edit",
         "title": "%command.connection.edit%",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.connection.delete",
         "title": "%command.connection.delete%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(trash)"
       },
       {
         "command": "mysql.database.add",
         "title": "%command.database.add%",
         "icon": "$(add)",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.db.drop",
         "title": "%command.db.drop%",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.runQuery",
         "title": "%command.runQuery%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(run)"
       },
       {
         "command": "mysql.runAllQuery",
         "title": "%command.runAllQuery%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(run)"
       },
       {
@@ -195,135 +165,36 @@
       {
         "command": "mysql.db.active",
         "title": "%command.db.active%",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
-        "command": "mysql.mock.run",
-        "title": "%command.mock.run%",
-        "category": "MySQL",
-        "icon": "$(run)"
-      },
-      {
-        "command": "mysql.changeTableName",
-        "title": "%command.changeTableName%",
-        "category": "MySQL"
+        "command": "mysql.table.drop",
+        "title": "%command.table.drop%",
+        "category": "Sema4.ai Data",
+        "icon": "$(remove)"
       },
       {
         "command": "mysql.column.up",
         "title": "%command.column.up%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(arrow-up)"
       },
       {
         "command": "mysql.column.down",
         "title": "%command.column.down%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(arrow-down)"
-      },
-      {
-        "command": "mysql.view.source",
-        "title": "%command.view.source%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.table.show",
-        "title": "%command.table.show%",
-        "category": "MySQL",
-        "icon": "$(list-flat)"
       },
       {
         "command": "mysql.column.update",
         "title": "%command.column.update%",
-        "category": "MySQL"
+        "category": "Sema4.ai Data"
       },
       {
         "command": "mysql.template.table",
         "title": "%command.template.table%",
-        "category": "MySQL",
+        "category": "Sema4.ai Data",
         "icon": "$(add)"
-      },
-      {
-        "command": "mysql.template.view",
-        "title": "%command.template.view%",
-        "category": "MySQL",
-        "icon": "$(add)"
-      },
-      {
-        "command": "mysql.template.procedure",
-        "title": "%command.template.procedure%",
-        "category": "MySQL",
-        "icon": "$(add)"
-      },
-      {
-        "command": "mysql.template.trigger",
-        "title": "%command.template.trigger%",
-        "category": "MySQL",
-        "icon": "$(add)"
-      },
-      {
-        "command": "mysql.template.function",
-        "title": "%command.template.function%",
-        "category": "MySQL",
-        "icon": "$(add)"
-      },
-      {
-        "command": "mysql.template.user",
-        "title": "%command.template.user%",
-        "category": "MySQL",
-        "icon": "$(add)"
-      },
-      {
-        "command": "mysql.delete.user",
-        "title": "%command.delete.user%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.user.grant",
-        "title": "%command.user.grant%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.change.user",
-        "title": "%command.change.user%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.delete.view",
-        "title": "%command.delete.view%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.delete.procedure",
-        "title": "%command.delete.procedure%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.delete.function",
-        "title": "%command.delete.function%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.delete.trigger",
-        "title": "%command.delete.trigger%",
-        "category": "MySQL"
-      },
-      {
-        "command": "mysql.connection.terminal",
-        "title": "%command.connection.terminal%",
-        "icon": "$(terminal)"
-      },
-      {
-        "command": "mysql.redis.connection.status",
-        "title": "%command.redis.connection.status%"
-      },
-      {
-        "command": "mysql.redis.key.del",
-        "title": "%command.redis.key.del%",
-        "icon": "$(trash)"
-      },
-      {
-        "command": "mysql.redis.key.detail",
-        "title": "%command.redis.key.detail%"
       },
       {
         "command": "mysql.ssh.terminal.hear",
@@ -392,11 +263,6 @@
         "command": "mysql.runAllQuery",
         "key": "ctrl+shift+enter",
         "when": "editorLangId == sql"
-      },
-      {
-        "command": "mysql.mock.run",
-        "when": "resourceFilename =~ /mock\\.json$/ ",
-        "key": "f9"
       }
     ],
     "menus": {
@@ -418,11 +284,6 @@
         }
       ],
       "editor/title": [
-        {
-          "command": "mysql.mock.run",
-          "when": "resourceFilename =~ /mock.json$/ ",
-          "group": "navigation"
-        },
         {
           "command": "mysql.runQuery",
           "when": "editorLangId == sql || resourceFilename =~ /.sql$/ ",
@@ -468,21 +329,6 @@
           "group": "2_mysql@0"
         },
         {
-          "command": "mysql.query.add",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == queryGroup",
-          "group": "2_mysql@0"
-        },
-        {
-          "command": "mysql.query.rename",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == query",
-          "group": "2_mysql@0"
-        },
-        {
-          "command": "mysql.query.run",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == query",
-          "group": "2_mysql@0"
-        },
-        {
           "command": "mysql.refresh",
           "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(esConnection|ftpConnection|ftpFolder)$/",
           "group": "2_mysql@1"
@@ -498,53 +344,8 @@
           "group": "inline@0"
         },
         {
-          "command": "mysql.connection.terminal",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|catalog)$/",
-          "group": "inline@2"
-        },
-        {
-          "command": "mysql.query.switch",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|catalog|database|esConnection|esIndex)$/",
-          "group": "inline@5"
-        },
-        {
-          "command": "mysql.query.add",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == queryGroup",
-          "group": "inline@0"
-        },
-        {
-          "command": "mysql.query.run",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == query",
-          "group": "inline@0"
-        },
-        {
-          "command": "mysql.template.user",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == userGroup",
-          "group": "1_mysql@1"
-        },
-        {
           "command": "mysql.refresh",
           "when": "view =~ /sema4ai.+?ql/ && viewItem == userGroup",
-          "group": "1_mysql@2"
-        },
-        {
-          "command": "mysql.template.user",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == userGroup",
-          "group": "inline"
-        },
-        {
-          "command": "mysql.change.user",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == user",
-          "group": "1_mysql@-1"
-        },
-        {
-          "command": "mysql.user.grant",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == user",
-          "group": "1_mysql@0"
-        },
-        {
-          "command": "mysql.delete.user",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == user",
           "group": "1_mysql@2"
         },
         {
@@ -563,14 +364,9 @@
           "group": "4_mysql@5"
         },
         {
-          "command": "mysql.table.show",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(table|view)$/",
-          "group": "inline@3"
-        },
-        {
-          "command": "mysql.view.source",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(view)$/",
-          "group": "1_inline@2"
+          "command": "mysql.query.switch",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|catalog|database|esConnection|esIndex)$/",
+          "group": "inline@5"
         },
         {
           "command": "mysql.refresh",
@@ -593,19 +389,14 @@
           "group": "inline@2"
         },
         {
+          "command": "mysql.table.drop",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == table",
+          "group": "inline@1"
+        },
+        {
           "command": "mysql.refresh",
           "when": "view =~ /sema4ai.+?ql/ && viewItem == viewGroup",
           "group": "1_mysql@2"
-        },
-        {
-          "command": "mysql.template.view",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == viewGroup",
-          "group": "inline"
-        },
-        {
-          "command": "mysql.delete.view",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == view",
-          "group": "1_mysql@1"
         },
         {
           "command": "mysql.refresh",
@@ -613,29 +404,9 @@
           "group": "1_mysql@2"
         },
         {
-          "command": "mysql.template.procedure",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == procedureGroup",
-          "group": "inline"
-        },
-        {
-          "command": "mysql.delete.procedure",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == procedure",
-          "group": "2_mysql@1"
-        },
-        {
           "command": "mysql.refresh",
           "when": "view =~ /sema4ai.+?ql/ && viewItem == functionGroup",
           "group": "1_mysql@2"
-        },
-        {
-          "command": "mysql.template.function",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == functionGroup",
-          "group": "inline"
-        },
-        {
-          "command": "mysql.delete.function",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == function",
-          "group": "1_mysql@1"
         },
         {
           "command": "mysql.refresh",
@@ -643,16 +414,10 @@
           "group": "1_mysql@2"
         },
         {
-          "command": "mysql.template.trigger",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == triggerGroup",
-          "group": "inline"
-        },
-        {
-          "command": "mysql.delete.trigger",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == trigger",
-          "group": "1_mysql@1"
+          "command": "mysql.table.drop",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == table",
+          "group": "2_mysql@2"
         }
-        
       ]
     },
     "configuration": {
@@ -788,7 +553,7 @@
   },
   "__metadata": {
     "id": "38c08d09-caa0-4988-8ffb-bcbd51f86e55",
-    "publisherDisplayName": "cweijan",
+    "publisherDisplayName": "sema4.ai",
     "publisherId": "3f28829b-0cc9-47bb-90db-7c05baa399ec"
   }
 }
