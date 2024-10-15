@@ -85,9 +85,6 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.connection.edit": (connectionNode: ConnectionNode) => {
                     serviceManager.connectService.openConnect(connectionNode.provider, connectionNode)
                 },
-                "mysql.connection.config": () => {
-                    serviceManager.connectService.openConfig()
-                },
                 "mysql.connection.open": (connectionNode: ConnectionNode) => {
                     connectionNode.provider.openConnection(connectionNode)
                 },
@@ -146,9 +143,6 @@ export function activate(context: vscode.ExtensionContext) {
             },
             // mock
             ...{
-                "mysql.mock.table": (tableNode: TableNode) => {
-                    serviceManager.mockRunner.create(tableNode)
-                },
                 "mysql.mock.run": () => {
                     serviceManager.mockRunner.runMock()
                 },
@@ -217,9 +211,6 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.table.drop": (tableNode: TableNode) => {
                     tableNode.dropTable();
                 },
-                "mysql.table.source": (tableNode: TableNode) => {
-                    if (tableNode) { tableNode.showSource(); }
-                },
                 "mysql.view.source": (tableNode: TableNode) => {
                     if (tableNode) { tableNode.showSource(); }
                 },
@@ -235,14 +226,8 @@ export function activate(context: vscode.ExtensionContext) {
                 "mysql.column.down": (columnNode: ColumnNode) => {
                     columnNode.moveDown();
                 },
-                "mysql.column.add": (tableNode: TableNode) => {
-                    tableNode.addColumnTemplate();
-                },
                 "mysql.column.update": (columnNode: ColumnNode) => {
                     columnNode.updateColumnTemplate();
-                },
-                "mysql.column.drop": (columnNode: ColumnNode) => {
-                    columnNode.dropColumnTemplate();
                 },
             },
             // template
@@ -252,9 +237,6 @@ export function activate(context: vscode.ExtensionContext) {
                 },
                 "mysql.codeLens.run": (sql: string) => {
                     QueryUnit.runQuery(sql, ConnectionManager.tryGetConnection(), { split: true, recordHistory: true })
-                },
-                "mysql.table.design": (tableNode: TableNode) => {
-                    tableNode.designTable();
                 },
                 "mysql.codeLens.namedQuery": (sql: string) => {
                     vscode.window.showErrorMessage('This command is not yet implemented.');
@@ -274,9 +256,6 @@ export function activate(context: vscode.ExtensionContext) {
             },
             // create template
             ...{
-                "mysql.template.sql": (tableNode: TableNode) => {
-                    tableNode.selectSqlTemplate();
-                },
                 "mysql.template.table": (tableGroup: TableGroup) => {
                     tableGroup.createTemplate();
                 },
