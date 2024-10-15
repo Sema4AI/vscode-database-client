@@ -81,7 +81,7 @@
         {
           "id": "github-cweijan-mysql",
           "title": "Sema4.ai Data Server",
-          "icon": "resources/icon/database-container.svg"
+          "icon": "resources/icon/data-access.svg"
         }
       ]
     },
