@@ -79,16 +79,16 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "github-cweijan-mysql",
+          "id": "github-sema4ai-mysql",
           "title": "Sema4.ai Data Server",
           "icon": "resources/icon/data-access.svg"
         }
       ]
     },
     "views": {
-      "github-cweijan-mysql": [
+      "github-sema4ai-mysql": [
         {
-          "id": "github.cweijan.mysql",
+          "id": "github.sema4ai.mysql",
           "name": "Sema4.ai Data Server"
         }
       ]
@@ -432,224 +432,224 @@
       "view/title": [
         {
           "command": "mysql.connection.add",
-          "when": "view =~ /cweijan.+?ql/",
+          "when": "view =~ /sema4ai.+?ql/",
           "group": "navigation@3"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/",
+          "when": "view =~ /sema4ai.+?ql/",
           "group": "navigation@2"
         },
         {
           "command": "mysql.history.open",
-          "when": "view == github.cweijan.mysql",
+          "when": "view == github.sema4ai.mysql",
           "group": "navigation@0"
         }
       ],
       "view/item/context": [
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(catalog|esConnection|sshConnection|folder|redisConnection|connection|tableGroup|viewGroup|systemViewGroup|triggerGroup|procedureGroup|functionGroup|table)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(catalog|esConnection|sshConnection|folder|redisConnection|connection|tableGroup|viewGroup|systemViewGroup|triggerGroup|procedureGroup|functionGroup|table)$/",
           "group": "inline@-2"
         },
         {
           "command": "mysql.connection.edit",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection|ftpConnection|sshConnection)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection|ftpConnection|sshConnection)$/",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.host.copy",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection)$/",
           "group": "1_mysql@6"
         },
         {
           "command": "mysql.database.add",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == connection",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == connection",
           "group": "2_mysql@0"
         },
         {
           "command": "mysql.query.add",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == queryGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == queryGroup",
           "group": "2_mysql@0"
         },
         {
           "command": "mysql.query.rename",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == query",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == query",
           "group": "2_mysql@0"
         },
         {
           "command": "mysql.query.run",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == query",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == query",
           "group": "2_mysql@0"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(esConnection|ftpConnection|ftpFolder)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(esConnection|ftpConnection|ftpFolder)$/",
           "group": "2_mysql@1"
         },
         {
           "command": "mysql.connection.delete",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection|ftpConnection|sshConnection)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|esConnection|redisConnection|ftpConnection|sshConnection)$/",
           "group": "10mysql@2"
         },
         {
           "command": "mysql.database.add",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == connection",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == connection",
           "group": "inline@0"
         },
         {
           "command": "mysql.connection.terminal",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|catalog)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|catalog)$/",
           "group": "inline@2"
         },
         {
           "command": "mysql.query.switch",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(connection|catalog|database|esConnection|esIndex)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(connection|catalog|database|esConnection|esIndex)$/",
           "group": "inline@5"
         },
         {
           "command": "mysql.query.add",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == queryGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == queryGroup",
           "group": "inline@0"
         },
         {
           "command": "mysql.query.run",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == query",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == query",
           "group": "inline@0"
         },
         {
           "command": "mysql.template.user",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == userGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == userGroup",
           "group": "1_mysql@1"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == userGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == userGroup",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.template.user",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == userGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == userGroup",
           "group": "inline"
         },
         {
           "command": "mysql.change.user",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == user",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == user",
           "group": "1_mysql@-1"
         },
         {
           "command": "mysql.user.grant",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == user",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == user",
           "group": "1_mysql@0"
         },
         {
           "command": "mysql.delete.user",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == user",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == user",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.name.copy",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(catalog|user|database|esColumn|column|table|view|esIndex|procedure|function|trigger|mongoTable|redisKey)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(catalog|user|database|esColumn|column|table|view|esIndex|procedure|function|trigger|mongoTable|redisKey)$/",
           "group": "-1_mysql@-5"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == database",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == database",
           "group": "3_mysql@0"
         },
         {
           "command": "mysql.db.drop",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /(database|catalog)/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /(database|catalog)/",
           "group": "4_mysql@5"
         },
         {
           "command": "mysql.table.show",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(table|view)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(table|view)$/",
           "group": "inline@3"
         },
         {
           "command": "mysql.view.source",
-          "when": "view =~ /cweijan.+?ql/ && viewItem =~ /^(view)$/",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem =~ /^(view)$/",
           "group": "1_inline@2"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == tableGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == tableGroup",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.template.table",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == tableGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == tableGroup",
           "group": "inline"
         },
         {
           "command": "mysql.column.up",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == column",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == column",
           "group": "inline@0"
         },
         {
           "command": "mysql.column.down",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == column",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == column",
           "group": "inline@2"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == viewGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == viewGroup",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.template.view",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == viewGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == viewGroup",
           "group": "inline"
         },
         {
           "command": "mysql.delete.view",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == view",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == view",
           "group": "1_mysql@1"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == procedureGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == procedureGroup",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.template.procedure",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == procedureGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == procedureGroup",
           "group": "inline"
         },
         {
           "command": "mysql.delete.procedure",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == procedure",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == procedure",
           "group": "2_mysql@1"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == functionGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == functionGroup",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.template.function",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == functionGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == functionGroup",
           "group": "inline"
         },
         {
           "command": "mysql.delete.function",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == function",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == function",
           "group": "1_mysql@1"
         },
         {
           "command": "mysql.refresh",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == triggerGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == triggerGroup",
           "group": "1_mysql@2"
         },
         {
           "command": "mysql.template.trigger",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == triggerGroup",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == triggerGroup",
           "group": "inline"
         },
         {
           "command": "mysql.delete.trigger",
-          "when": "view =~ /cweijan.+?ql/ && viewItem == trigger",
+          "when": "view =~ /sema4ai.+?ql/ && viewItem == trigger",
           "group": "1_mysql@1"
         }
         
