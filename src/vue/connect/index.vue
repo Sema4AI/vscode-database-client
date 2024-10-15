@@ -320,7 +320,7 @@ export default {
   data() {
     return {
       connectionOption: {
-        name: "Sema4 AI Data Server",
+        name: "Local Data Server",
         host: "127.0.0.1",
         dbPath: "",
         port: "47335",
