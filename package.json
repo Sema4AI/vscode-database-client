@@ -174,18 +174,6 @@
         "icon": "$(remove)"
       },
       {
-        "command": "mysql.column.up",
-        "title": "%command.column.up%",
-        "category": "Sema4.ai Data",
-        "icon": "$(arrow-up)"
-      },
-      {
-        "command": "mysql.column.down",
-        "title": "%command.column.down%",
-        "category": "Sema4.ai Data",
-        "icon": "$(arrow-down)"
-      },
-      {
         "command": "mysql.column.update",
         "title": "%command.column.update%",
         "category": "Sema4.ai Data"
@@ -377,16 +365,6 @@
           "command": "mysql.template.table",
           "when": "view =~ /sema4ai.+?ql/ && viewItem == tableGroup",
           "group": "inline"
-        },
-        {
-          "command": "mysql.column.up",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == column",
-          "group": "inline@0"
-        },
-        {
-          "command": "mysql.column.down",
-          "when": "view =~ /sema4ai.+?ql/ && viewItem == column",
-          "group": "inline@2"
         },
         {
           "command": "mysql.table.drop",
