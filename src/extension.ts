@@ -67,9 +67,6 @@ export function activate(context: vscode.ExtensionContext) {
                     serviceManager.historyService.recordHistory(sql, costTime);
                 },
                 "mysql.history.open": () => serviceManager.historyService.showHistory(),
-                "mysql.setting.open": () => {
-                    serviceManager.settingService.open();
-                },
                 "mysql.server.info": (connectionNode: ConnectionNode) => {
                     serviceManager.statusService.show(connectionNode)
                 },
@@ -100,20 +97,9 @@ export function activate(context: vscode.ExtensionContext) {
             },
             // externel data
             ...{
-                "mysql.util.github": () => {
-                    vscode.env.openExternal(vscode.Uri.parse('https://github.com/cweijan/vscode-database-client'));
-                },
                 "mysql.struct.diff": () => {
                     new DiffService().startDiff(serviceManager.provider);
-                },
-                "mysql.data.import": (node: SchemaNode | ConnectionNode) => {
-                    const importService=ServiceManager.getImportService(node.dbType);
-                    vscode.window.showOpenDialog({ filters: importService.filter(), canSelectMany: false, openLabel: "Select sql file to import", canSelectFiles: true, canSelectFolders: false }).then((filePath) => {
-                        if (filePath) {
-                            importService.importSql(filePath[0].fsPath, node)
-                        }
-                    });
-                },
+                }
             },
             // ssh
             ...{
@@ -141,20 +127,8 @@ export function activate(context: vscode.ExtensionContext) {
                     databaseNode.dropDatatabase();
                 }
             },
-            // mock
-            ...{
-                "mysql.mock.run": () => {
-                    serviceManager.mockRunner.runMock()
-                },
-            },
             // user node
             ...{
-                "mysql.change.user": (userNode: UserNode) => {
-                    userNode.changePasswordTemplate();
-                },
-                "mysql.user.grant": (userNode: UserNode) => {
-                    userNode.grandTemplate();
-                },
                 "mysql.user.sql": (userNode: UserNode) => {
                     userNode.selectSqlTemplate();
                 },
@@ -182,41 +156,13 @@ export function activate(context: vscode.ExtensionContext) {
                             vscode.window.showTextDocument(doc)
                         });
                     }
-                },
-                "mysql.query.run": (queryNode: QueryNode) => {
-                    queryNode.run()
-                },
-                "mysql.query.open": (queryNode: QueryNode) => {
-                    queryNode.open()
-                },
-                "mysql.query.add": (queryGroup: QueryGroup) => {
-                    queryGroup.add();
-                },
-                "mysql.query.rename": (queryNode: QueryNode) => {
-                    queryNode.rename()
                 }
-            },
-            // redis
-            ...{
-                "mysql.redis.connection.status": (connectionNode: RedisConnectionNode) => connectionNode.showStatus(),
-                "mysql.connection.terminal": (node: Node) => node.openTerminal(),
-                "mysql.redis.key.detail": (keyNode: KeyNode) => keyNode.detail(),
-                "mysql.redis.key.del": (keyNode: KeyNode) => keyNode.delete(),
             },
             // table node
             ...{
                 "mysql.show.esIndex": (indexNode: ESIndexNode) => {
                     indexNode.viewData()
-                },
-                "mysql.table.drop": (tableNode: TableNode) => {
-                    tableNode.dropTable();
-                },
-                "mysql.view.source": (tableNode: TableNode) => {
-                    if (tableNode) { tableNode.showSource(); }
-                },
-                "mysql.table.show": (tableNode: TableNode) => {
-                    if (tableNode) { tableNode.openInNew(); }
-                },
+                }
             },
             // column node
             ...{
@@ -234,6 +180,9 @@ export function activate(context: vscode.ExtensionContext) {
             ...{
                 "mysql.table.find": (tableNode: TableNode) => {
                     tableNode.openTable();
+                },
+                "mysql.table.drop": (tableNode: TableNode) => {
+                    tableNode.dropTable();
                 },
                 "mysql.codeLens.run": (sql: string) => {
                     QueryUnit.runQuery(sql, ConnectionManager.tryGetConnection(), { split: true, recordHistory: true })
@@ -258,41 +207,8 @@ export function activate(context: vscode.ExtensionContext) {
             ...{
                 "mysql.template.table": (tableGroup: TableGroup) => {
                     tableGroup.createTemplate();
-                },
-                "mysql.template.procedure": (procedureGroup: ProcedureGroup) => {
-                    procedureGroup.createTemplate();
-                },
-                "mysql.template.view": (viewGroup: ViewGroup) => {
-                    viewGroup.createTemplate();
-                },
-                "mysql.template.trigger": (triggerGroup: TriggerGroup) => {
-                    triggerGroup.createTemplate();
-                },
-                "mysql.template.function": (functionGroup: FunctionGroup) => {
-                    functionGroup.createTemplate();
-                },
-                "mysql.template.user": (userGroup: UserGroup) => {
-                    userGroup.createTemplate();
-                },
-            },
-            // drop template
-            ...{
-                "mysql.delete.user": (userNode: UserNode) => {
-                    userNode.drop();
-                },
-                "mysql.delete.view": (viewNode: ViewNode) => {
-                    viewNode.drop();
-                },
-                "mysql.delete.procedure": (procedureNode: ProcedureNode) => {
-                    procedureNode.drop();
-                },
-                "mysql.delete.function": (functionNode: FunctionNode) => {
-                    functionNode.drop();
-                },
-                "mysql.delete.trigger": (triggerNode: TriggerNode) => {
-                    triggerNode.drop();
-                },
-            },
+                }
+            }
         }),
     );
 
