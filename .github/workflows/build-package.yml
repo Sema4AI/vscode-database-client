@@ -95,42 +95,13 @@ jobs:
     if: always()  # Ensures notification runs regardless of success or failure
 
     steps:
-      - name: Prepare Slack Message
-        id: prepare_message
-        run: |
-          if [[ "${{ needs.build.result }}" == "success" ]]; then
-            echo "::set-output name=message::A new version of Sema4 Data VS Code Extension has been built and available to download"
-            echo "::set-output name=fields::Build Number: ${{ env.BUILD_NUMBER }}\nDownload:<https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>"
-            echo "::set-output name=color::#36a64f"
-          else
-            echo "::set-output name=message::The build for Sema4 Data VS Code Extension has failed"
-            echo "::set-output name=fields::"
-            echo "::set-output name=color::#ff0000"
-          fi
-        
-      - name: Notify Slack
-        id: slack
-        uses: slackapi/slack-github-action@v1.27.0
-        with:
-          payload: |
-            {
-              "text": "${{ steps.prepare_message.outputs.message }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "${{ steps.prepare_message.outputs.fields }}"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "View the run details [here](${{ github.run_url }})"
-                  }
-                }
-              ]
-            }
+      - name: Send notification to Slack
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
+        run: |
+          STATUS=$([${{needs.build.result}} == 'success'] && echo "SUCCESS" || echo "FAILURE")
+          BUILD_MSG=$([${{needs.build.result}} == 'success'] && echo "Build Number: *${{ env.BUILD_NUMBER }}*" || echo "")
+          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\nRun ID: *${{github.run_id}}*\n$BUILD_MSG"
+          curl -X POST -H 'Content-type: application/json' \
+            --data "{\"text\": \"${MESSAGE}\"}" $SLACK_WEBHOOK_URL
+        
