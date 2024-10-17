@@ -88,3 +88,30 @@ jobs:
           aws s3 cp "$S3_BASE_URL/vscode-sema4ai-client-${{ env.BASE_VERSION }}-build.${{ env.BUILD_NUMBER }}.vsix" "$S3_BASE_URL/vscode-sema4ai-client.vsix" \
             --metadata-directive REPLACE \
             --content-disposition "attachment; filename=vscode-sema4ai-client-${{ env.BASE_VERSION }}-build.${{ env.BUILD_NUMBER }}.vsix"
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: build  # Ensures this job runs after the 'build' job
+    if: always()  # Ensures notification runs regardless of success or failure
+
+    steps:
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          payload: |
+            {
+              "text": "${{ needs.build.result == 'success' && 'A new version of VS Code Sema4 Client has been built and available to download' || 'The build for VS Code Sema4 Client has failed' }}",
+              "attachments": [
+                {
+                  "color": "${{ needs.build.result == 'success' && '#36a64f' || '#ff0000' }}",
+                  {{- if eq needs.build.result 'success' -}}
+                  "fields": [
+                    { "title": "Build Number", "value": "${{ env.BUILD_NUMBER }}", "short": true },
+                    { "title": "Download", "value": "<https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>", "short": true }
+                  ],
+                  {{- end }}
+                  "text": "View the run details [here](${{ github.run_url }})"
+                }
+              ]
+            }
