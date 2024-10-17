@@ -99,9 +99,17 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
         run: |
-          STATUS=$([${{needs.build.result}} == 'success'] && echo "SUCCESS" || echo "FAILURE")
-          BUILD_MSG=$([${{needs.build.result}} == 'success'] && echo "Build Number: *${{ env.BUILD_NUMBER }}*" || echo "")
-          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\nRun ID: *${{github.run_id}}*\n$BUILD_MSG"
+          if [ "${{ needs.build.result }}" == "success" ]; then
+            STATUS="SUCCESS"
+            BUILD_MSG="Build Number: *${{ env.BUILD_NUMBER }}*"
+            DOWNLOAD_MSG="Download: <https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>"
+          else
+            STATUS="FAILURE"
+            BUILD_MSG=""
+            DOWNLOAD_MSG=""
+          fi
+          
+          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\nRun ID: *${{github.run_id}}*\n$BUILD_MSG\n$DOWNLOAD_MSG"
           curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\": \"${MESSAGE}\"}" $SLACK_WEBHOOK_URL
         
