@@ -120,7 +120,7 @@ jobs:
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "${{ steps.prepare_message.outputs.fields }}""
+                    "text": "${{ steps.prepare_message.outputs.fields }}"
                   }
                 },
                 {
