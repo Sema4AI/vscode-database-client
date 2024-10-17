@@ -54,6 +54,14 @@ jobs:
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
           echo "New build number: $build_number"
 
+      - name: Update version in package.json
+        run: |
+          version=$(jq -r '.version' package.json)
+          new_version="${version}-build.${{ env.BUILD_NUMBER }}"
+          jq --arg new_version "$new_version" '.version = $new_version' package.json > package.tmp.json
+          mv package.tmp.json package.json
+          echo "Updated version to $new_version"
+
       - name: Package VSIX
         run: |
           npm install -g @vscode/vsce
