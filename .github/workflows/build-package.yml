@@ -100,11 +100,11 @@ jobs:
         run: |
           if [[ "${{ needs.build.result }}" == "success" ]]; then
             echo "::set-output name=message::A new version of Sema4 Data VS Code Extension has been built and available to download"
-            echo "::set-output name=fields::[{\"title\": \"Build Number\", \"value\": \"${{ env.BUILD_NUMBER }}\", \"short\": true}, {\"title\": \"Download\", \"value\": \"<https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>\", \"short\": true}]"
+            echo "::set-output name=fields::Build Number: ${{ env.BUILD_NUMBER }}\nDownload:<https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>", \"short\": true}]"
             echo "::set-output name=color::#36a64f"
           else
             echo "::set-output name=message::The build for Sema4 Data VS Code Extension has failed"
-            echo "::set-output name=fields::[]"
+            echo "::set-output name=fields::"
             echo "::set-output name=color::#ff0000"
           fi
         
