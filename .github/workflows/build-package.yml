@@ -99,11 +99,11 @@ jobs:
         id: prepare_message
         run: |
           if [[ "${{ needs.build.result }}" == "success" ]]; then
-            echo "::set-output name=message::A new version of Sema4 VS Code Extension has been built and available to download"
+            echo "::set-output name=message::A new version of Sema4 Data VS Code Extension has been built and available to download"
             echo "::set-output name=fields::[{\"title\": \"Build Number\", \"value\": \"${{ env.BUILD_NUMBER }}\", \"short\": true}, {\"title\": \"Download\", \"value\": \"<https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>\", \"short\": true}]"
             echo "::set-output name=color::#36a64f"
           else
-            echo "::set-output name=message::The build for VS Code Sema4 Client has failed"
+            echo "::set-output name=message::The build for Sema4 Data VS Code Extension has failed"
             echo "::set-output name=fields::[]"
             echo "::set-output name=color::#ff0000"
           fi
@@ -114,12 +114,20 @@ jobs:
         with:
           payload: |
             {
-              "text": "${{ needs.build.result == 'success' && 'A new version of VS Code Sema4 Client has been built and available to download' || 'The build for VS Code Sema4 Client has failed' }}",
-              "attachments": [
+              "text": "${{ steps.prepare_message.outputs.message }}",
+              "blocks": [
                 {
-                  "color": "${{ steps.prepare_message.outputs.color }}",
-                  "fields": ${{ steps.prepare_message.outputs.fields }},
-                  "text": "View the run details [here](${{ github.run_url }})"
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "${{ steps.prepare_message.outputs.fields }}""
+                  }
+                },
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "View the run details [here](${{ github.run_url }})"
                 }
               ]
             }
