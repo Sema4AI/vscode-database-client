@@ -52,6 +52,7 @@ jobs:
           fi
           echo "$build_number" > buildNumber.txt
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
+          echo "::set-output name=build_number::$build_number"
           echo "New build number: $build_number"
 
       - name: Update version in package.json
@@ -99,9 +100,10 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
         run: |
+          BUILD_NUMBER="${{ steps.increment-build.outputs.build_number }}"
           if [ "${{ needs.build.result }}" == "success" ]; then
             STATUS="SUCCESS"
-            BUILD_MSG="Build Number: *${{ env.BUILD_NUMBER }}*"
+            BUILD_MSG="Build Number: *$BUILD_NUMBER*"
             DOWNLOAD_MSG="Download: <https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>"
           else
             STATUS="FAILURE"
