@@ -2,6 +2,7 @@ import { ConfigKey } from '@/common/constants';
 import { Global } from '@/common/global';
 import * as vscode from 'vscode';
 import { SQLParser } from '../parser/sqlParser';
+import { ConnectionManager } from '@/service/connectionManager';
 
 export class SqlCodeLensProvider implements vscode.CodeLensProvider {
 
@@ -19,13 +20,29 @@ export class SqlCodeLensProvider implements vscode.CodeLensProvider {
             return []
         }
 
+        
+
+       
         return SQLParser.parseBlocks(document).flatMap(block => {
           // Create a CodeLens for the "Run SQL" command
-          const runCommand = new vscode.CodeLens(block.range, {
-              command: "mysql.codeLens.run",
-              title: "▶ Run SQL",
-              arguments: [block.sql],
-          });
+          let codeLensCollection = [];
+          const node = ConnectionManager.tryGetConnection();
+          let dbToRun = "";
+          if(node && node.host){
+            dbToRun = ` on ${node.host}`;
+            if(node.name){
+              dbToRun = ` on ${node.name}`;
+            }
+            
+            
+            const runCommand = new vscode.CodeLens(block.range, {
+                command: "mysql.codeLens.run",
+                title: `▶ Run SQL${dbToRun}`,
+                arguments: [block.sql],
+            });
+            codeLensCollection.push(runCommand);
+          }
+         
   
           // Create a CodeLens for the "Create Named Query" command
           const createNamedQueryCommand = new vscode.CodeLens(block.range, {
@@ -33,9 +50,10 @@ export class SqlCodeLensProvider implements vscode.CodeLensProvider {
               title: "✚ Create Named Query ",
               arguments: [block.sql],
           });
+          codeLensCollection.push(createNamedQueryCommand);
   
           // Return both CodeLens objects for the same block
-          return [runCommand, createNamedQueryCommand];
+          return codeLensCollection;
       });
     }
 

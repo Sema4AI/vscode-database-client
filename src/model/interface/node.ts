@@ -105,6 +105,7 @@ export abstract class Node extends vscode.TreeItem implements CopyAble {
     }
 
     protected init(source: Node) {
+        this.name = source.name
         this.host = source.host
         this.port = source.port
         this.user = source.user

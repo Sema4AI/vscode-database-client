@@ -127,21 +127,9 @@ export class ConnectionNode extends Node implements CopyAble {
 
     public async newQuery() {
 
-        await FileManager.show(`${this.label}.sql`);
-        let childMap = {};
-        const dbNameList = (await this.getChildren()).filter((databaseNode) => (databaseNode instanceof SchemaNode || databaseNode instanceof CatalogNode)).map((databaseNode) => {
-            childMap[databaseNode.uid] = databaseNode
-            return this.dbType == DatabaseType.MYSQL ? databaseNode.schema : databaseNode.database;
-        });
-        let dbName: string;
-        if (dbNameList.length == 1) {
-            dbName = dbNameList[0]
-        }
-        if (dbNameList.length > 1) {
-            dbName = await vscode.window.showQuickPick(dbNameList, { placeHolder: "active database" })
-        }
-        this.contextValue = ModelType.SCHEMA;
-        ConnectionManager.changeActive(dbName ? childMap[`${this.getConnectId()}@${dbName}`] : this)
+        
+        this.contextValue = ModelType.CONNECTION;
+        ConnectionManager.changeActive( this)
 
     }
 

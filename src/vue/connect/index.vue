@@ -325,6 +325,7 @@ export default {
         dbPath: "",
         port: "47335",
         user: "mindsdb",
+        requestTimeout: 10000,
         authType: "default",
         password: "",
         encoding: "utf8",
