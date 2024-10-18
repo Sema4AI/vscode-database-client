@@ -113,6 +113,8 @@ jobs:
         run: |
           BN=$(cat buildNumber.txt)
           echo "Build Number in notify: $BN"
+          echo "Workflow URL: https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          GITHUB_WORKFLOW_URL=https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
           if [ "${{ needs.build.result }}" == "success" ]; then
             STATUS="SUCCESS"
             BUILD_MSG="Build Number: *$BN*"
@@ -123,7 +125,7 @@ jobs:
             DOWNLOAD_MSG=""
           fi
           
-          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\n$BUILD_MSG\n$DOWNLOAD_MSG\nView the logs here: ${{github.run_url}}"
+          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\n$BUILD_MSG\n$DOWNLOAD_MSG\nView the build logs here: $GITHUB_WORKFLOW_URL"
           curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\": \"${MESSAGE}\"}" $SLACK_WEBHOOK_URL
         
