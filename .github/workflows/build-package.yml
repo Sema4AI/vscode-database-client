@@ -100,10 +100,11 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
         run: |
-          BUILD_NUMBER="${{ steps.increment-build.outputs.build_number }}"
+          BN="${{ steps.increment-build.outputs.build_number }}"
+          echo "Build Number in notify: $BN"
           if [ "${{ needs.build.result }}" == "success" ]; then
             STATUS="SUCCESS"
-            BUILD_MSG="Build Number: *$BUILD_NUMBER*"
+            BUILD_MSG="Build Number: *$BN*"
             DOWNLOAD_MSG="Download: <https://cdn.sema4.ai/sema4-data-explorer/alpha/vscode-sema4ai-client.vsix|Download Latest VSIX>"
           else
             STATUS="FAILURE"
