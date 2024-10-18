@@ -52,8 +52,13 @@ jobs:
           fi
           echo "$build_number" > buildNumber.txt
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
-          echo "::set-output name=build_number::$build_number"
           echo "New build number: $build_number"
+          
+      - name: Upload build number as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-number
+          path: buildNumber.txt
 
       - name: Update version in package.json
         run: |
@@ -96,11 +101,17 @@ jobs:
     if: always()  # Ensures notification runs regardless of success or failure
 
     steps:
+      - name: Download build number artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-number
+          path: .
+          
       - name: Send notification to Slack
         env:
           SLACK_WEBHOOK_URL: ${{secrets.SLACK_WEBHOOK_URL}}
         run: |
-          BN="${{ steps.increment-build.outputs.build_number }}"
+          BN=$(cat buildNumber.txt)
           echo "Build Number in notify: $BN"
           if [ "${{ needs.build.result }}" == "success" ]; then
             STATUS="SUCCESS"
@@ -112,7 +123,7 @@ jobs:
             DOWNLOAD_MSG=""
           fi
           
-          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\nRun ID: *${{github.run_id}}*\n$BUILD_MSG\n$DOWNLOAD_MSG"
+          MESSAGE="Build Status: *$STATUS*\nJob: *${{ github.workflow}}*\n$BUILD_MSG\n$DOWNLOAD_MSG\nView the logs here: ${{github.run_url}}"
           curl -X POST -H 'Content-type: application/json' \
             --data "{\"text\": \"${MESSAGE}\"}" $SLACK_WEBHOOK_URL
         
