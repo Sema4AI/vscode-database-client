@@ -39,6 +39,7 @@ const router = new VueRouter({
     // ssh
     { path: '/forward', component: forward, name: 'forward' },
     { path: '/sshTerminal', component: sshTerminal, name: 'sshTerminal' },
+    { path: '/configure', component: configureDataSource, name: 'configure' },
   ]
 })
 
