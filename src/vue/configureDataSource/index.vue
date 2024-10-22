@@ -22,6 +22,9 @@ import ConfigurationParameter from './component/ConfigurationParameter.vue'
 
 import {supportedDataSourceEngines, dataSourceConfigurationParameterSpecForEngine} from '../../service/configure_datasource/supportedSources.ts'
 
+import { getVscodeEvent } from "../util/vscode";
+let vscodeEvent;
+
 export default {
     name: "ConfigureDataSource",
     components: {
@@ -73,11 +76,15 @@ export default {
                 connectionParams: this.confParam,
             };
             console.log(JSON.stringify(configurationDetails));
+            vscodeEvent.emit("configure", configurationDetails);
         }
     },
     created() {
         this.engineSelected = this.engines[0];
         this.confParamSpec = dataSourceConfigurationParameterSpecForEngine(this.engineSelected);
+    },
+    mounted() {
+        vscodeEvent = getVscodeEvent();
     },
     watch: {
         dataSourceName: function(current, old) {

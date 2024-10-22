@@ -15,7 +15,8 @@ import { ViewGroup } from "../main/viewGroup";
 import { CatalogNode } from "./catalogNode";
 import { SchemaNode } from "./schemaNode";
 import { UserGroup } from "./userGroup";
-import { configureDataSource } from "../../service/configure_datasource/dialog";
+import { generate_query } from "../../service/configure_datasource/dialog";
+import { ViewManager } from "@/common/viewManager";
 
 /**
  * TODO: 切换为使用连接池, 现在会导致消费队列不正确, 导致视图失去响应
@@ -134,15 +135,21 @@ export class ConnectionNode extends Node implements CopyAble {
     }
 
     public async createDatabase() {
-      const query = await configureDataSource();
-      if (!query ){
-        return;
-      }
-      this.execute(query).then(() => {
-        DatabaseCache.clearDatabaseCache(this.uid);
-        DbTreeDataProvider.refresh(this);
-        vscode.window.showInformationMessage(`Create datasource success!`);
-      });  
+        // render webview
+        ViewManager.createWebviewPanel({
+            path: "app", title: "configure datasource", splitView: false, iconPath: Global.getExtPath("resources", "icon", "connection.svg"), eventHandler: (handler) => {
+                handler.on("init", () => {
+                    handler.emit('route', 'configure')
+                }).on("configure", (configurationParams) => {
+                    const query = generate_query(configurationParams);
+                    this.execute(query).then(() => {
+                        DatabaseCache.clearDatabaseCache(this.uid);
+                        DbTreeDataProvider.refresh(this);
+                        vscode.window.showInformationMessage(`Create datasource success!`);
+                    });
+                })
+            }
+        });
     }
 
     public async deleteConnection(context: vscode.ExtensionContext) {
