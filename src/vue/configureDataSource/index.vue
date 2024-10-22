@@ -26,7 +26,7 @@ import { getVscodeEvent } from "../util/vscode";
 let vscodeEvent;
 
 export default {
-    name: "ConfigureDataSource",
+    name: "configure",
     components: {
         ConfigurationParameter
     },
@@ -85,6 +85,7 @@ export default {
     },
     mounted() {
         vscodeEvent = getVscodeEvent();
+        vscodeEvent.emit("route-" + this.$route.name);
     },
     watch: {
         dataSourceName: function(current, old) {

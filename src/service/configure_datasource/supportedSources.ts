@@ -1,17 +1,6 @@
-import { ConfigurationParameter, ConfigurationParameterKind } from "./common";
 
-interface ConfigurationParameterMinimal {
-  readonly name: string;
-  readonly kind?: ConfigurationParameterKind;
-  readonly sensitive?: boolean;
-  readonly optional?: boolean;
-}
 
-type DataSourcesConfigurationParametersSpec = {
-  [key: string]: ConfigurationParameterMinimal[];
-};
-
-function configurationParameterWithFilledInDefaults({name, kind = "string", sensitive = false, optional = false}: ConfigurationParameterMinimal): ConfigurationParameter {
+function configurationParameterWithFilledInDefaults({name, kind = "string", sensitive = false, optional = false}) {
 	return {
 		name,
 		kind,
@@ -20,7 +9,7 @@ function configurationParameterWithFilledInDefaults({name, kind = "string", sens
 	};
 }
 
-const SupportedDataSourcesConfigurationParametersSpec: DataSourcesConfigurationParametersSpec = {
+const SupportedDataSourcesConfigurationParametersSpec = {
   postgres : [
     {
       name: "host",
@@ -67,12 +56,31 @@ const SupportedDataSourcesConfigurationParametersSpec: DataSourcesConfigurationP
       optional: true,
     }
   ],
+  redshift: [
+    {
+      name: "host",
+    },
+    {
+      name: "database",
+    },
+    {
+      name: "port",
+      kind: "integer",
+    },
+    {
+      name: "user",
+    },
+    {
+      name: "password",
+      sensitive: true,
+    }
+  ],
 };
 
-export function supportedDataSourceEngines(): string[] {
+export function supportedDataSourceEngines()  {
 	return Object.keys(SupportedDataSourcesConfigurationParametersSpec);
 }
 
-export function dataSourceConfigurationParameterSpecForEngine(engine: string): ConfigurationParameter[] {
+export function dataSourceConfigurationParameterSpecForEngine(engine) {
 	return SupportedDataSourcesConfigurationParametersSpec[engine].map((cpm) => (configurationParameterWithFilledInDefaults(cpm)));
 }
