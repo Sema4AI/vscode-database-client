@@ -5,5 +5,3 @@ export function generate_query(configureOpts) {
     const qry: string = `CREATE DATABASE ${dsName} WITH ENGINE = '${engine}', PARAMETERS = ${JSON.stringify(confParams)};`;
 	return qry;
 }
-
-// export function deactivate() {}

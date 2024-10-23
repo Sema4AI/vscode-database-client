@@ -1,5 +1,3 @@
-
-
 function configurationParameterWithFilledInDefaults({name, kind = "string", sensitive = false, optional = false}) {
 	return {
 		name,

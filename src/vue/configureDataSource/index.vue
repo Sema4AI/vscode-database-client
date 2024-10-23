@@ -51,7 +51,6 @@ export default {
             let paramValue = changeDetails.paramValue;
             this.confParam[paramName] = paramValue;
             this.isFormFilled();
-            // console.log(JSON.stringify(this.confParam));
         },
         isFormFilled() {
             if (!this.dataSourceName) {
@@ -59,7 +58,6 @@ export default {
                 return;
             }
             for (const p of this.confParamSpec) {
-                // console.log(JSON.stringify(p));
                 if (!p.optional) {
                     if (!this.confParam[p.name]) {
                         this.formFilled = false;
@@ -102,7 +100,6 @@ export default {
 
 .configuration-parameter {
     display: flex;
-    /* background-color: grey; */
     margin: 5px;
 }
 

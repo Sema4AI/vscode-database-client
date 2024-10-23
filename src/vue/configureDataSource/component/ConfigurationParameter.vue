@@ -25,7 +25,6 @@ export default {
     },
     watch: {
         paramValue: function(current, old) {
-            // console.log(`${this.param.name} changes from ${old} to  ${current}`);
             let val = this.param.kind === "integer" ? Number(current) : current;
             this.$emit('param-value-updated', {paramName: this.param.name, paramValue: val});
         }
