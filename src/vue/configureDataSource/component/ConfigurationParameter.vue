@@ -12,7 +12,7 @@ export default {
     props: ['param'],
     data() {
         return {
-            paramValue: this.param.kind === "integer" ? 0 : '',
+            paramValue: '',
         }
     },
     computed: {

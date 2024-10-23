@@ -109,11 +109,24 @@ export default {
 .parameter-name {
     margin: 5px;
     font-weight: bold;
+    width: 200px;
+}
+
+.parameter-entry {
+    margin: 5px;
+    width: 500px;
+    background-color: beige;
+    color: black;
 }
 
 button {
     margin: 10px;
     width: 100px;
     height: 30px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+    border-color:aquamarine;
+    color: cadetblue;
 }
 </style>
