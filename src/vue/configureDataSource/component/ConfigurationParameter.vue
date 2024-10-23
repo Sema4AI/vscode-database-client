@@ -1,6 +1,6 @@
 <template>
     <div class="configuration-parameter">
-        <label class="parameter-name" :for="param.name">{{ param.name }}<span v-if="!param.optional" class="required-parameter">*</span></label>
+        <label class="parameter-name" :for="param.name">{{ paramName }}<span v-if="!param.optional" class="required-parameter">*</span></label>
         <input class="parameter-entry" :type="inputType" :required="!param.optional" v-model="paramValue"/>
     </div>
 </template>
@@ -21,6 +21,9 @@ export default {
                 return "password";
             }
             return this.param.kind === "integer" ? "number" : "text";
+        },
+        paramName() {
+            return this.param.name.charAt(0).toUpperCase() + this.param.name.slice(1);
         },
     },
     watch: {

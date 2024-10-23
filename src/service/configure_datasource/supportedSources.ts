@@ -10,66 +10,66 @@ function configurationParameterWithFilledInDefaults({name, kind = "string", sens
 const SupportedDataSourcesConfigurationParametersSpec = {
   postgres : [
     {
-      name: "Host",
+      name: "host",
     },
     {
-      name: "Database",
+      name: "database",
     },
     {
-      name: "Port",
+      name: "port",
       kind: "integer",
     },
     {
-      name: "User",
+      name: "user",
     },
     {
-      name: "Password",
+      name: "password",
       sensitive: true,
     }
   ],
   snowflake: [
     {
-      name: "Account",
+      name: "account",
     },
     {
-      name: "User",
+      name: "user",
     },
     {
-      name: "Password",
+      name: "password",
       sensitive: true,
     },
     {
-      name: "Database",
+      name: "database",
     },
     {
-      name: "Warehouse",
+      name: "warehouse",
       optional: true,
     },
     {
-      name: "Schema",
+      name: "schema",
       optional: true,
     },
     {
-      name: "Role",
+      name: "role",
       optional: true,
     }
   ],
   redshift: [
     {
-      name: "Host",
+      name: "host",
     },
     {
-      name: "Database",
+      name: "database",
     },
     {
-      name: "Port",
+      name: "port",
       kind: "integer",
     },
     {
-      name: "User",
+      name: "user",
     },
     {
-      name: "Password",
+      name: "password",
       sensitive: true,
     }
   ],
