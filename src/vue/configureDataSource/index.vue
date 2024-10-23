@@ -2,13 +2,13 @@
     <div class="datasource-configuration-section">
         <form @submit.prevent>
             <div class="configuration-parameter">
-                <label class="parameter-name" for="engineSelector">pick a DB engine<span class="required-parameter">*</span></label>
+                <label class="parameter-name" for="engineSelector">Select engine<span class="required-parameter">*</span></label>
                 <select class="parameter-entry" id="engineSelector" name="Choose DB Engine" @change="onEngineSelection">
                     <option v-for="engine in engines" :value="engine">{{ engine }}</option>
                 </select>
             </div>
             <div class="configuration-parameter">
-                <label class="parameter-name" for="dataSourceName">data source name<span class="required-parameter">*</span></label>
+                <label class="parameter-name" for="dataSourceName">Data source name<span class="required-parameter">*</span></label>
                 <input class="parameter-entry" v-model="dataSourceName" required />
             </div>
             <ConfigurationParameter v-for="(confParam, idx) in confParamSpec" :param="confParam" :key="idx" @param-value-updated="onParamValueChange"/>
@@ -115,8 +115,8 @@ export default {
 .parameter-entry {
     margin: 5px;
     width: 500px;
-    background-color: beige;
-    color: black;
+    background-color: #242323;
+    color: beige;
 }
 
 button {
