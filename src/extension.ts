@@ -21,6 +21,7 @@ import { Console } from "./common/Console";
 // Don't change last order, it will occur circular reference
 import { ServiceManager } from "./service/serviceManager";
 import { QueryUnit } from "./service/queryUnit";
+import { File } from "./service/file";
 import { FileManager } from "./common/filesManager";
 import { ConnectionManager } from "./service/connectionManager";
 import { QueryNode } from "./model/query/queryNode";
@@ -207,6 +208,12 @@ export function activate(context: vscode.ExtensionContext) {
             ...{
                 "mysql.template.table": (tableGroup: TableGroup) => {
                     tableGroup.createTemplate();
+                }
+            },
+            // upload file
+            ...{
+                "mysql.file.upload": () => {
+                    File.uploadFile(ConnectionManager.tryGetConnection());
                 }
             }
         }),
